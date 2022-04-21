@@ -1,5 +1,5 @@
 {
-  "name": "file-execute",
+  "name": "@retro_ig/file-execute",
   "version": "0.0.1",
   "description": "A module to easily get and execute files in a folder",
   "main": "index.js",

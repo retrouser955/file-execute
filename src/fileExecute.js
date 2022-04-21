@@ -11,7 +11,7 @@ class FileExecute {
         db.clear();
         let executeFiles;
         try {
-            executeFiles = fs.readdirSync(path)
+            executeFiles = fs.readdirSync(path).filter(file => file.endsWith('.js') || file.endsWith('.ts'))
         } catch (error) {
             throw new Error('FileExecute Error: Path must be a file path')
         }
