@@ -1,0 +1,12 @@
+{
+  "name": "file-execute",
+  "version": "0.0.1",
+  "description": "A module to easily get and execute files in a folder",
+  "main": "index.js",
+  "author": "retro_ig",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "easy-json-database": "^1.5.0"
+  }
+}
