@@ -16,6 +16,7 @@ const fileExecute = new FileExecute('path/to/your/folder') //path to your folder
 async function exampleFunction() {
     await fileExecute.execute('testFile')
 }
+exampleFunction()
 ```
 In testFile.js
 ```js
@@ -41,6 +42,7 @@ async function exampleFunction() {
     })
     await fileExecute.execute('testFile')
 }
+exampleFunction()
 ```
 In testFile.js
 ```js

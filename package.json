@@ -1,6 +1,6 @@
 {
   "name": "@retro_ig/file-execute",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A module to easily get and execute files in a folder",
   "main": "index.js",
   "author": "retro_ig",
