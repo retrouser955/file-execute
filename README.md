@@ -59,6 +59,36 @@ module.exports = {
     }
 }
 ```
+# Passing Custom Data
+
+On version 0.1.3 or higher, you can pass your own custom data with the `execute()` function  
+We will go back to our example again to learn how to pass custom data!
+
+```js
+const { FileExecute } = require('@retro_ig/file-execute')
+const fileExecute = new FileExecute('path/to/your/folder') //path to your folder with all your js files
+async function exampleFunction() {
+    await fileExecute.execute('testFile', {
+        foo: "bar"
+    })
+}
+exampleFunction()
+```
+In testFile.js
+```js
+module.exports = {
+    name: 'testFile', //we will use the name to call the execute function in the main file
+    async execute(customData/** We can pass in custom data value here to read all the values **/) {
+        try {
+            const data = customData.foo
+            console.log(data) //expected output: Bar
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+```
+
 # Found an issue?
 
 Open an issue at our [github page!](https://github.com/retrouser955/file-execute)
