@@ -1,6 +1,5 @@
 const fs = require('fs')
-const Database = require('easy-json-database')
-const db = new Database(`${__dirname}/files.json`)
+const db = require('quick.db');
 class FileExecute {
     /**
      * 
@@ -8,8 +7,11 @@ class FileExecute {
      */
     constructor(path) {
         if(!path) throw new Error('FileExecute Error: Path must be a non-empty string')
-        db.clear();
         let executeFiles;
+        const allDB = db.all()
+        for(const value of allDB) {
+            db.delete(value.ID)
+        }
         try {
             executeFiles = fs.readdirSync(path).filter(file => file.endsWith('.js') || file.endsWith('.ts'))
         } catch (error) {
@@ -23,11 +25,22 @@ class FileExecute {
         }
         this.path = path
     }
-    async execute(fileName) {
+    /**
+     * 
+     * @param {string} fileName The name of the file in module.exports
+     * @param {object} customData custom data that you want in this file
+     */
+    async execute(fileName, customData) {
         if(!fileName) throw new Error('FileExecute Error: File Name must be a non-empty string')
         if(!db.has(fileName)) throw new Error('FileExecute Error: File Name must a valid file name. (the one that you included in module.exports)')
-        const file = require(`${this.path}/${fileName}`)
-        file.execute()
+        if(customData) {
+            if(typeof customData != 'object') throw new Error('FileExecute Error: Custom data must be an object')
+            const file = require(`${this.path}/${fileName}`)
+            file.execute(customData)
+        } else {
+            const file = require(`${this.path}/${fileName}`)
+            file.execute()
+        }
     }
 }
 module.exports = {

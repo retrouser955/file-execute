@@ -5,7 +5,9 @@ async function e() {
         foo: 'bar'
     })
     await fileExecute.execute('a')
-    await fileExecute.execute('b')
+    await fileExecute.execute('b', {
+        foo: "bar"
+    })
     await fileExecute.execute('c')
 }
 e()
